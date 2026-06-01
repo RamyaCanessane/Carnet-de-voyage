@@ -16,6 +16,7 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Ramya Canessane")
                 .font(.largeTitle)
+                .foregroundStyle(.green)
         }
         .padding()
     }
