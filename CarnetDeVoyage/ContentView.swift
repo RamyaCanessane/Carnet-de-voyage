@@ -9,16 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "moon.stars.fill")
-                .font(.title)
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Ramya Canessane")
-                .font(.largeTitle)
-                .foregroundStyle(.green)
-        }
-        .padding()
+        CarnetLieu()
     }
 }
 

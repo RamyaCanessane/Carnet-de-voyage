@@ -9,7 +9,48 @@ import SwiftUI
 
 struct MyCarteDeLieu: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                HStack {
+                    Image(.grèce)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 100, height: 100)
+//                        .clipped()
+                        .clipShape(Circle())
+                        .shadow(radius: 5)
+                    VStack {
+                        Text("Grèce")
+                            .bold()
+                        Text("Archipèle de Santorin")
+                    }
+
+                }
+                HStack {
+                    Image(.chine)
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 100, height: 100)
+                        .shadow(radius: 5)
+                    Text("Chine")
+                        .bold()
+
+                }
+                HStack {
+                    Image(.espagne)
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
+                        .frame(width: 100, height: 100)
+                        .shadow(radius: 5)
+                    Text("Espagne")
+                        .bold()
+
+                }
+            }
+            .navigationTitle("Carte de lieu")
+        }
     }
 }
 
