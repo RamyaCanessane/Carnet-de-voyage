@@ -19,7 +19,7 @@ struct MyCarteDeLieu: View {
 //                        .clipped()
                         .clipShape(Circle())
                         .shadow(radius: 5)
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text("Grèce")
                             .bold()
                         Text("Archipèle de Santorin")
@@ -33,8 +33,11 @@ struct MyCarteDeLieu: View {
                         .clipShape(Circle())
                         .frame(width: 100, height: 100)
                         .shadow(radius: 5)
-                    Text("Chine")
-                        .bold()
+                    VStack(alignment: .leading) {
+                        Text("Chine")
+                            .bold()
+                        Text("Hong Kong")
+                    }
 
                 }
                 HStack {
@@ -44,9 +47,12 @@ struct MyCarteDeLieu: View {
                         .clipShape(Circle())
                         .frame(width: 100, height: 100)
                         .shadow(radius: 5)
-                    Text("Espagne")
-                        .bold()
+                    VStack(alignment: .leading) {
+                        Text("Espagne")
+                            .bold()
+                        Text("Barcelone")
 
+                    }
                 }
             }
             .navigationTitle("Carte de lieu")
