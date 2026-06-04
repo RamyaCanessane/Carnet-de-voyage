@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct Galerie: View {
+    var columns = [
+         GridItem(.flexible()),
+         GridItem(.flexible()),
+         GridItem(.flexible())
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Image(.chine)
+                .resizable()
+                .scaledToFit()
+            LazyVGrid(columns: columns) {
+                ForEach(Carnet.lieux) { lieu in
+                    Image(lieu.image)
+                        .resizable()
+                        .scaledToFit()
+                }
+            }
+            .navigationTitle("Galerie")
+        }
     }
 }
 

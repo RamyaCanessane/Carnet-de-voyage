@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CarnetLieu()
+        TabView {
+            CarteLieu()
+            .ignoresSafeArea()
+            .tabItem {
+                Label("Carte de lieux", systemImage: "map")}
+            ListeLieu(lieux: Carnet.lieux)
+                .tabItem {
+                    Label("Liste", systemImage: "list.bullet")
+                }
+            Galerie()
+                .tabItem {
+                    Label("Galerie", systemImage: "photo")
+                }
+        }
     }
 }
 

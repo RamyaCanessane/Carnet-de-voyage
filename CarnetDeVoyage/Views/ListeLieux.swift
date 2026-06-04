@@ -7,59 +7,82 @@
 
 import SwiftUI
 
-struct MyCarteDeLieu: View {
+struct ListeLieu: View {
+    @State var lieux: [Lieu]
+    @State private var ajout = false
+    
     var body: some View {
         NavigationStack {
+            
+            HStack {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                Spacer()
+                Text("Swipper")
+                Spacer()
+                Image(systemName: "trash")
+                    .foregroundStyle(.red)
+
+            }
+            .padding()
+
             List {
-                HStack {
-                    Image(.grèce)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-//                        .clipped()
-                        .clipShape(Circle())
-                        .shadow(radius: 5)
-                    VStack(alignment: .leading) {
-                        Text("Grèce")
-                            .bold()
-                        Text("Archipèle de Santorin")
+                ForEach($lieux) { $lieu in
+                    HStack {
+                        Image(lieu.image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle())
+                            .shadow(radius: 5)
+                        VStack(alignment: .leading) {
+                            Text(lieu.pays)
+                                .bold()
+                            Text(lieu.ville)
+                                .foregroundStyle(.secondary)
+                        }
                     }
-
-                }
-                HStack {
-                    Image(.chine)
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 100, height: 100)
-                        .shadow(radius: 5)
-                    VStack(alignment: .leading) {
-                        Text("Chine")
-                            .bold()
-                        Text("Hong Kong")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .overlay(alignment: .topTrailing) {
+                        if lieu.isVisited == true {
+                            Image(systemName: "checkmark.circle.fill")
+                                .padding(6)
+                                .font(.title2)
+                                .bold()
+                                .padding(.trailing, 8)
+                                .padding(.top, 8)
+                                .shadow(radius: 6)
+                                .foregroundStyle(.green)
+                        }
                     }
-
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            lieu.isVisited.toggle()
+                        } label: {
+                            Label("Visité", systemImage: "checkmark")
+                        }
+                        .tint(.green)
+                    }
                 }
-                HStack {
-                    Image(.espagne)
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 100, height: 100)
-                        .shadow(radius: 5)
-                    VStack(alignment: .leading) {
-                        Text("Espagne")
-                            .bold()
-                        Text("Barcelone")
-
+                .onDelete { indexSet in
+                    lieux.remove(atOffsets: indexSet)
+                    print(lieux)
+                }
+            }
+            .navigationTitle("Liste de lieux")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Ajouter") { ajout = true }
+                        .sheet(isPresented: $ajout) {
+                            Formulaire(lieux: lieux)
+                        
                     }
                 }
             }
-            .navigationTitle("Carte de lieu")
         }
     }
 }
 
 #Preview {
-    MyCarteDeLieu()
+    ListeLieu(lieux: Carnet.lieux)
 }
