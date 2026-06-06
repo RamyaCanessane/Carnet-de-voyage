@@ -14,7 +14,7 @@ struct ContentView: View {
             .ignoresSafeArea()
             .tabItem {
                 Label("Carte de lieux", systemImage: "map")}
-            ListeLieu(lieux: Carnet.lieux)
+            ListeLieu(lieux: lieux)
                 .tabItem {
                     Label("Liste", systemImage: "list.bullet")
                 }
