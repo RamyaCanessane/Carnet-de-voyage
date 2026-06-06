@@ -20,7 +20,7 @@ struct Galerie: View {
                 .resizable()
                 .scaledToFit()
             LazyVGrid(columns: columns) {
-                ForEach(Carnet.lieux) { lieu in
+                ForEach(lieux) { lieu in
                     Image(lieu.image)
                         .resizable()
                         .scaledToFit()
